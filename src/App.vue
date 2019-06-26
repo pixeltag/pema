@@ -98,11 +98,9 @@ export default {
   },
   methods: {
     handleDelivery(evt) {
-      console.log(this.form);
       evt.preventDefault();
       this.errors = [];
       if(this.checkAvalibility(this.form.driver)  && this.checkAvalibility(this.form.trailer)) {
-        console.log('avaliable');
         // then handle the capacity of items and trailers
         // first check is there any items
         if(this.form.items.length > 0) {
@@ -110,7 +108,6 @@ export default {
          if(fullSize > this.form.trailer.capacity) {
            this.errors.push(`The Items size ${fullSize} is more than the trailer capacity ${this.form.trailer.capacity}` );
          } else {
-           console.log("pass")
            const path = this.form.items.map(item => {
              return {pickup : item.pickup_location , delivery :  item.delivery_location };
            })
@@ -120,11 +117,9 @@ export default {
              fullSize,
              trip : path
            };
-           console.log(this.validTrips);
            }
         }
       } else {
-        console.log("not avaliable");
 
       }
     },
@@ -141,7 +136,6 @@ export default {
       //  } else {
 
       //  }
-         console.log(this.form.items)
     },
     handleCapacity(items) {
       let finaclCapcity = 0;
